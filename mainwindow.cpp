@@ -32,9 +32,8 @@ MainWindow::MainWindow(QWidget *parent)
     model->select();
 
     ui->tvPerson->setModel(model);
-    //ui->tvPerson->setItemDelegate(new PersonDelegate);;
     ui->tvPerson->verticalHeader()->setDefaultSectionSize(18);
-//    ui->tvPerson->setColumnHidden(model->fieldIndex("id"), true);
+    ui->tvPerson->setColumnHidden(model->fieldIndex("id"), true);
     ui->tvPerson->setColumnHidden(model->fieldIndex("p_birthday"), true);
     ui->tvPerson->setColumnHidden(model->fieldIndex("p_spec_class"), true);
     ui->tvPerson->setColumnHidden(model->fieldIndex("p_spec_date"), true);
@@ -51,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
 //    model->setHeaderData(6, Qt::Horizontal, "СНИЛС");
 
     ui->tvPerson->setItemDelegateForColumn(model->fieldIndex("p_startdate"), new PersonDelegate(ui->tvPerson));
+    //ui->tvPerson->setItemDelegate(new PersonDelegate);
 
 }
 

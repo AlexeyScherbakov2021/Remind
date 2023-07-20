@@ -221,12 +221,6 @@ public:
         tabWidget->setSizePolicy(sizePolicy);
         tabMed = new QWidget();
         tabMed->setObjectName("tabMed");
-        QPalette palette;
-        QBrush brush(QColor(204, 204, 204, 255));
-        brush.setStyle(Qt::SolidPattern);
-        palette.setBrush(QPalette::Active, QPalette::Base, brush);
-        palette.setBrush(QPalette::Inactive, QPalette::Base, brush);
-        tabMed->setPalette(palette);
         listWidget = new QListWidget(tabMed);
         listWidget->setObjectName("listWidget");
         listWidget->setGeometry(QRect(10, 200, 471, 171));
@@ -289,6 +283,8 @@ public:
         formGroupBox_2 = new QGroupBox(tabMed);
         formGroupBox_2->setObjectName("formGroupBox_2");
         formGroupBox_2->setGeometry(QRect(240, 20, 241, 131));
+        formGroupBox_2->setCheckable(true);
+        formGroupBox_2->setChecked(true);
         formLayout_3 = new QFormLayout(formGroupBox_2);
         formLayout_3->setObjectName("formLayout_3");
         label_16 = new QLabel(formGroupBox_2);
