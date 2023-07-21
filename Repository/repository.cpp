@@ -220,6 +220,7 @@ int Repository::GetLastMed(int idPerson,  Medical* med)
     med->Period = sql.value("m_period").toInt();
     med->dateInspect = sql.value("m_date").toDate();
     med->nextInscect = med->dateInspect.addYears(med->Period);
+    med->idPerson = idPerson;
     db.close();
 
     return 0;
@@ -234,6 +235,114 @@ int Repository::GetListMed(int idPerson)
 
     return 0;
 }
+
+
+//-----------------------------------------------------------------------------------
+// добавление медосмотра
+//-----------------------------------------------------------------------------------
+bool Repository::addMed(int idPerson, int period, QDate &date)
+{
+    if(!db.open())
+    {
+        qDebug() << "Cannot open database: " << db.lastError();
+        return false;
+    }
+
+    QSqlQuery sql(db);
+    sql.prepare("insert into medical (m_id_person,m_period,m_date) values (:m_id_person,:m_period,:m_date)");
+    sql.bindValue(":m_id_person", idPerson);
+    sql.bindValue(":m_period", period);
+    sql.bindValue(":m_date", date.toString("yyyy-MM-dd"));
+    bool res = sql.exec();
+
+    db.close();
+
+    return res;
+
+}
+
+//-----------------------------------------------------------------------------------
+// добавление психосмотра
+//-----------------------------------------------------------------------------------
+bool Repository::addPsyh(int idPerson, int period, QDate &date)
+{
+    if(!db.open())
+    {
+        qDebug() << "Cannot open database: " << db.lastError();
+        return false;
+    }
+
+    QSqlQuery sql(db);
+    sql.prepare("insert into psyh (ps_id_person,ps_period,ps_date) values (:ps_id_person,:ps_period,:ps_date)");
+    sql.bindValue(":ps_id_person", idPerson);
+    sql.bindValue(":ps_period", period);
+    sql.bindValue(":ps_date", date.toString("yyyy-MM-dd"));
+    bool res = sql.exec();
+
+    db.close();
+
+    return res;
+
+}
+
+//-----------------------------------------------------------------------------------
+// получение последней записи психосмотра
+//-----------------------------------------------------------------------------------
+int Repository::GetLastPsyh(int idPerson, Medical *med)
+{
+    if(!db.open())
+    {
+        qDebug() << "Cannot open database: " << db.lastError();
+        return -1;
+    }
+
+    QSqlQuery sql(db);
+    sql.prepare("select id,ps_period,ps_date from psyh where ps_id_person=:ps_id_person order by ps_date desc LIMIT 1");
+    sql.bindValue(":ps_id_person", idPerson);
+    bool res = sql.exec();
+
+    qDebug() << sql.lastError().text();
+
+    sql.next();
+    med->id = sql.value("id").toInt();
+    med->Period = sql.value("ps_period").toInt();
+    med->dateInspect = sql.value("ps_date").toDate();
+    med->nextInscect = med->dateInspect.addYears(med->Period);
+    med->idPerson = idPerson;
+    db.close();
+
+    return 0;
+
+}
+
+
+//-----------------------------------------------------------------------------------
+// получение параметра по имени
+//-----------------------------------------------------------------------------------
+QVariant Repository::getParam(const QString &paramName)
+{
+    QVariant var;
+    if(!db.open())
+    {
+        qDebug() << "Cannot open database: " << db.lastError();
+        return QVariant();
+    }
+
+    QSqlQuery sql(db);
+    sql.prepare("select s_value from settings where s_name=:s_name");
+    sql.bindValue(":s_name", paramName);
+    sql.exec();
+
+    sql.next();
+    var = sql.value("s_value");
+    db.close();
+
+    return var;
+
+}
+
+
+
 
 
 //

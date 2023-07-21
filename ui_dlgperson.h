@@ -57,13 +57,13 @@ public:
     QVBoxLayout *verticalLayout_3;
     QTabWidget *tabWidget;
     QWidget *tabMed;
-    QListWidget *listWidget;
+    QListWidget *listHarm;
     QLabel *label_10;
     QGroupBox *formGroupBox;
     QFormLayout *formLayout_2;
     QHBoxLayout *horizontalLayout_2;
-    QPushButton *pushButton_5;
-    QPushButton *pushButton_3;
+    QPushButton *pbListMed;
+    QPushButton *pbAddMed;
     QLabel *label_12;
     QLineEdit *leDateMed;
     QLabel *label_13;
@@ -75,14 +75,14 @@ public:
     QLabel *label_16;
     QLabel *label_17;
     QLabel *label_18;
-    QLineEdit *lineEdit_6;
-    QLineEdit *lineEdit_5;
-    QLineEdit *lineEdit_7;
+    QLineEdit *lePeriodPsyh;
+    QLineEdit *leDatePsyh;
+    QLineEdit *leNextDatePsyh;
     QHBoxLayout *horizontalLayout_3;
-    QPushButton *pushButton_6;
-    QPushButton *pushButton_4;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *pbListPsyh;
+    QPushButton *pbAddPsyh;
+    QPushButton *pbAddHarm;
+    QPushButton *pbDelHarm;
     QWidget *tabOT;
     QWidget *tabPB;
     QWidget *tabPrB;
@@ -92,7 +92,7 @@ public:
     {
         if (DlgPerson->objectName().isEmpty())
             DlgPerson->setObjectName("DlgPerson");
-        DlgPerson->resize(954, 544);
+        DlgPerson->resize(921, 519);
         verticalLayout = new QVBoxLayout(DlgPerson);
         verticalLayout->setObjectName("verticalLayout");
         horizontalLayout = new QHBoxLayout();
@@ -221,28 +221,28 @@ public:
         tabWidget->setSizePolicy(sizePolicy);
         tabMed = new QWidget();
         tabMed->setObjectName("tabMed");
-        listWidget = new QListWidget(tabMed);
-        listWidget->setObjectName("listWidget");
-        listWidget->setGeometry(QRect(10, 200, 471, 171));
+        listHarm = new QListWidget(tabMed);
+        listHarm->setObjectName("listHarm");
+        listHarm->setGeometry(QRect(20, 200, 471, 171));
         label_10 = new QLabel(tabMed);
         label_10->setObjectName("label_10");
         label_10->setGeometry(QRect(20, 170, 100, 16));
         formGroupBox = new QGroupBox(tabMed);
         formGroupBox->setObjectName("formGroupBox");
-        formGroupBox->setGeometry(QRect(10, 20, 211, 129));
+        formGroupBox->setGeometry(QRect(20, 20, 221, 129));
         formLayout_2 = new QFormLayout(formGroupBox);
         formLayout_2->setObjectName("formLayout_2");
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        pushButton_5 = new QPushButton(formGroupBox);
-        pushButton_5->setObjectName("pushButton_5");
+        pbListMed = new QPushButton(formGroupBox);
+        pbListMed->setObjectName("pbListMed");
 
-        horizontalLayout_2->addWidget(pushButton_5);
+        horizontalLayout_2->addWidget(pbListMed);
 
-        pushButton_3 = new QPushButton(formGroupBox);
-        pushButton_3->setObjectName("pushButton_3");
+        pbAddMed = new QPushButton(formGroupBox);
+        pbAddMed->setObjectName("pbAddMed");
 
-        horizontalLayout_2->addWidget(pushButton_3);
+        horizontalLayout_2->addWidget(pbAddMed);
 
 
         formLayout_2->setLayout(0, QFormLayout::FieldRole, horizontalLayout_2);
@@ -282,9 +282,9 @@ public:
 
         formGroupBox_2 = new QGroupBox(tabMed);
         formGroupBox_2->setObjectName("formGroupBox_2");
-        formGroupBox_2->setGeometry(QRect(240, 20, 241, 131));
-        formGroupBox_2->setCheckable(true);
-        formGroupBox_2->setChecked(true);
+        formGroupBox_2->setGeometry(QRect(270, 20, 221, 131));
+        formGroupBox_2->setCheckable(false);
+        formGroupBox_2->setChecked(false);
         formLayout_3 = new QFormLayout(formGroupBox_2);
         formLayout_3->setObjectName("formLayout_3");
         label_16 = new QLabel(formGroupBox_2);
@@ -302,45 +302,45 @@ public:
 
         formLayout_3->setWidget(4, QFormLayout::LabelRole, label_18);
 
-        lineEdit_6 = new QLineEdit(formGroupBox_2);
-        lineEdit_6->setObjectName("lineEdit_6");
-        lineEdit_6->setReadOnly(true);
+        lePeriodPsyh = new QLineEdit(formGroupBox_2);
+        lePeriodPsyh->setObjectName("lePeriodPsyh");
+        lePeriodPsyh->setReadOnly(true);
 
-        formLayout_3->setWidget(3, QFormLayout::FieldRole, lineEdit_6);
+        formLayout_3->setWidget(3, QFormLayout::FieldRole, lePeriodPsyh);
 
-        lineEdit_5 = new QLineEdit(formGroupBox_2);
-        lineEdit_5->setObjectName("lineEdit_5");
-        lineEdit_5->setReadOnly(true);
+        leDatePsyh = new QLineEdit(formGroupBox_2);
+        leDatePsyh->setObjectName("leDatePsyh");
+        leDatePsyh->setReadOnly(true);
 
-        formLayout_3->setWidget(2, QFormLayout::FieldRole, lineEdit_5);
+        formLayout_3->setWidget(2, QFormLayout::FieldRole, leDatePsyh);
 
-        lineEdit_7 = new QLineEdit(formGroupBox_2);
-        lineEdit_7->setObjectName("lineEdit_7");
-        lineEdit_7->setReadOnly(true);
+        leNextDatePsyh = new QLineEdit(formGroupBox_2);
+        leNextDatePsyh->setObjectName("leNextDatePsyh");
+        leNextDatePsyh->setReadOnly(true);
 
-        formLayout_3->setWidget(4, QFormLayout::FieldRole, lineEdit_7);
+        formLayout_3->setWidget(4, QFormLayout::FieldRole, leNextDatePsyh);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        pushButton_6 = new QPushButton(formGroupBox_2);
-        pushButton_6->setObjectName("pushButton_6");
+        pbListPsyh = new QPushButton(formGroupBox_2);
+        pbListPsyh->setObjectName("pbListPsyh");
 
-        horizontalLayout_3->addWidget(pushButton_6);
+        horizontalLayout_3->addWidget(pbListPsyh);
 
-        pushButton_4 = new QPushButton(formGroupBox_2);
-        pushButton_4->setObjectName("pushButton_4");
+        pbAddPsyh = new QPushButton(formGroupBox_2);
+        pbAddPsyh->setObjectName("pbAddPsyh");
 
-        horizontalLayout_3->addWidget(pushButton_4);
+        horizontalLayout_3->addWidget(pbAddPsyh);
 
 
         formLayout_3->setLayout(0, QFormLayout::FieldRole, horizontalLayout_3);
 
-        pushButton = new QPushButton(tabMed);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(129, 167, 31, 24));
-        pushButton_2 = new QPushButton(tabMed);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(168, 167, 31, 24));
+        pbAddHarm = new QPushButton(tabMed);
+        pbAddHarm->setObjectName("pbAddHarm");
+        pbAddHarm->setGeometry(QRect(129, 167, 31, 24));
+        pbDelHarm = new QPushButton(tabMed);
+        pbDelHarm->setObjectName("pbDelHarm");
+        pbDelHarm->setGeometry(QRect(168, 167, 31, 24));
         tabWidget->addTab(tabMed, QString());
         tabOT = new QWidget();
         tabOT->setObjectName("tabOT");
@@ -398,19 +398,19 @@ public:
         verticalGroupBox->setTitle(QCoreApplication::translate("DlgPerson", "\320\237\320\273\320\260\320\275\320\270\321\200\320\276\320\262\320\260\320\275\320\270\320\265", nullptr));
         label_10->setText(QCoreApplication::translate("DlgPerson", "\320\222\321\200\320\265\320\264\320\275\321\213\320\265 \321\204\320\260\320\272\321\202\320\276\321\200\321\213", nullptr));
         formGroupBox->setTitle(QCoreApplication::translate("DlgPerson", "\320\234\320\265\320\264\320\276\321\201\320\274\320\276\321\202\321\200", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("DlgPerson", "...", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("DlgPerson", "+", nullptr));
+        pbListMed->setText(QCoreApplication::translate("DlgPerson", "...", nullptr));
+        pbAddMed->setText(QCoreApplication::translate("DlgPerson", "+", nullptr));
         label_12->setText(QCoreApplication::translate("DlgPerson", "\320\224\320\260\321\202\320\260 \320\277\321\200\320\276\320\262\320\265\320\264\320\265\320\275\320\270\321\217", nullptr));
         label_13->setText(QCoreApplication::translate("DlgPerson", "\320\237\320\265\321\200\320\270\320\276\320\264", nullptr));
         label_14->setText(QCoreApplication::translate("DlgPerson", "\320\241\320\273\320\265\320\264\321\203\321\211\320\270\320\271", nullptr));
-        formGroupBox_2->setTitle(QCoreApplication::translate("DlgPerson", "\320\237\321\201\320\270\321\205\320\270\320\260\321\202\321\200\320\270\321\207\320\265\321\201\320\272\320\276\320\265 \320\276\321\201\320\262\320\270\320\264\320\265\321\202\320\265\320\273\321\214\321\201\321\202\320\262\320\276\320\262\320\260\320\275\320\270\320\265", nullptr));
+        formGroupBox_2->setTitle(QCoreApplication::translate("DlgPerson", "\320\237\321\201\320\270\321\205. \320\276\321\201\320\262\320\270\320\264\320\265\321\202\320\265\320\273\321\214\321\201\321\202\320\262\320\276\320\262\320\260\320\275\320\270\320\265", nullptr));
         label_16->setText(QCoreApplication::translate("DlgPerson", "\320\224\320\260\321\202\320\260 \320\277\321\200\320\276\320\262\320\265\320\264\320\265\320\275\320\270\321\217", nullptr));
         label_17->setText(QCoreApplication::translate("DlgPerson", "\320\237\320\265\321\200\320\270\320\276\320\264", nullptr));
         label_18->setText(QCoreApplication::translate("DlgPerson", "\320\241\320\273\320\265\320\264\321\203\321\216\321\211\320\265\320\265", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("DlgPerson", "...", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("DlgPerson", "+", nullptr));
-        pushButton->setText(QCoreApplication::translate("DlgPerson", "+", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("DlgPerson", "-", nullptr));
+        pbListPsyh->setText(QCoreApplication::translate("DlgPerson", "...", nullptr));
+        pbAddPsyh->setText(QCoreApplication::translate("DlgPerson", "+", nullptr));
+        pbAddHarm->setText(QCoreApplication::translate("DlgPerson", "+", nullptr));
+        pbDelHarm->setText(QCoreApplication::translate("DlgPerson", "-", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabMed), QCoreApplication::translate("DlgPerson", "\320\234\320\265\320\264\320\276\321\201\320\274\320\276\321\202\321\200", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabOT), QCoreApplication::translate("DlgPerson", "\320\236\320\261\321\203\321\207\320\265\320\275\320\270\320\265 \320\277\320\276 \320\236\320\242", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabPB), QCoreApplication::translate("DlgPerson", "\320\236\320\261\321\203\321\207\320\265\320\275\320\270\320\265 \320\277\320\276 \320\237\320\221", nullptr));

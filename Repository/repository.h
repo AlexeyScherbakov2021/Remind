@@ -20,10 +20,13 @@ public:
 //    int AddPerson(Person &pers);
     int GetLastMed(int idPerson, Medical* med);
     int GetListMed(int idPerson);
-//    bool UpdatePerson(Person &pers);
-//    QSqlRecord getRecordPerson();
+    bool addMed(int idPerson, int period, QDate &date);
 
-//    int getListRecord(KindSql kind, QList<QSqlRecord> &rec);
+    bool addPsyh(int idPerson, int period, QDate &date);
+    int GetLastPsyh(int idPerson, Medical* med);
+    //    QSqlRecord getRecordPerson();
+
+    QVariant getParam(const QString &paramName);
 
     QSqlDatabase getDb() {return db;} ;
 

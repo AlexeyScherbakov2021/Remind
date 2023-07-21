@@ -19,23 +19,23 @@ class DlgPerson : public QDialog
     Q_OBJECT
 
 public:
-//    explicit DlgPerson(QSqlRecord* rec, int index, QWidget *parent = nullptr);
     explicit DlgPerson(QSqlTableModel* model, int index, QWidget *parent = nullptr);
     ~DlgPerson();
 
 private slots:
-//    void on_buttonBox_accepted();
-
     void on_DlgPerson_finished(int result);
+    void on_pbAddMed_clicked();
+
+    void on_pbAddPsyh_clicked();
 
 private:
     Ui::DlgPerson *ui;
-//    RemindModel* model;
     QSqlRecord* record;
     QSqlTableModel *model;
     QDataWidgetMapper *mapper;
     Person person;
     Medical med;
+    Medical psyh;
     int idPerson;
     int curRow;
 };

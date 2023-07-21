@@ -1,43 +1,8 @@
 #include "dlgperson.h"
 #include "ui_dlgperson.h"
-
 #include <MainWindow.h>
+#include <SelectDateDialog.h>
 
-//DlgPerson::DlgPerson(QSqlRecord* rec, int currenRow, QWidget *parent) :
-//    QDialog(parent),
-//    ui(new Ui::DlgPerson)
-//{
-////    model = mod;
-//    ui->setupUi(this);
-//    record = rec;
-
-//    person.id = record->value("id").toInt();
-//    person.p_lastname = record->value("p_lastname").toString();
-//    person.p_name = record->value("p_name").toString();
-//    person.p_midname = record->value("p_midname").toString();
-//    person.p_profession = record->value("p_profession").toString();
-//    person.p_snils = record->value("p_snils").toString();
-//    person.p_birthday = record->value("p_birthday").toDate();
-//    person.p_startdate = record->value("p_startdate").toDate();
-//    person.p_spec_class = record->value("p_spec_class").toInt();
-//    person.p_spec_date =  record->value("p_spec_date").toDate();
-
-
-////    QSqlRecord rec = mod->record();
-
-////    record->setValue(0, "12345");
-
-//    ui->leLastName->setText(record->value(1).toString());
-//    ui->leName->setText(rec->value(2).toString());
-//    ui->leMidName->setText(rec->value(3).toString());
-//    ui->deBirth->setDate(person.p_birthday);
-//    ui->leProf->setText(person.p_profession);
-//    ui->deStart->setDate(person.p_startdate);
-//    ui->leSNILS->setText(person.p_snils);
-//    ui->leSpecClass->setText(QString::number(person.p_spec_class));
-//    ui->deSpecClass->setDate(person.p_spec_date);
-
-//}
 
 DlgPerson::DlgPerson(QSqlTableModel *mod, int currenRow, QWidget *parent) : QDialog(parent), ui(new Ui::DlgPerson)
 {
@@ -67,6 +32,12 @@ DlgPerson::DlgPerson(QSqlTableModel *mod, int currenRow, QWidget *parent) : QDia
         ui->leNextMed->setText(med.nextInscect.toString("dd.MM.yyyy"));
         ui->leDateMed->setText(med.dateInspect.toString("dd.MM.yyyy"));
         ui->lePeriodMed->setText(QString::number(med.Period));
+
+        MainWindow::repo.GetLastPsyh(idPerson, &psyh);
+        ui->leNextDatePsyh->setText(psyh.nextInscect.toString("dd.MM.yyyy"));
+        ui->leDatePsyh->setText(psyh.dateInspect.toString("dd.MM.yyyy"));
+        ui->lePeriodPsyh->setText(QString::number(psyh.Period));
+
     }
 
 }
@@ -77,45 +48,9 @@ DlgPerson::~DlgPerson()
 }
 
 
-
-//void DlgPerson::on_buttonBox_accepted()
-//{
-
-//    // сохранение в базе данных
-//    mapper->submit();
-//    model->submitAll();
-
-//    //model->database().commit();
-
-////    person.p_lastname = ui->leLastName->text();
-////    person.p_name = ui->leName->text();
-////    person.p_midname = ui->leMidName->text();
-////    person.p_profession = ui->leProf->text();
-////    person.p_snils = ui->leSNILS->text();
-////    person.p_spec_class = ui->lineEdit->text().toInt();
-////    person.p_birthday = ui->deBirth->date();   //QDate::fromString(var, "yyyy-MM-dd");
-////    person.p_startdate = ui->deStart->date();
-////    person.p_spec_date = ui->dateEdit->date();
-
-////    record->setValue("p_lastname", person.p_lastname);
-////    record->setValue("p_name", person.p_name);
-////    record->setValue("p_midname", person.p_midname);
-////    record->setValue("p_profession", person.p_profession);
-////    record->setValue("p_snils", person.p_snils);
-////    record->setValue("p_birthday", person.p_birthday.toString("yyyy-MM-dd"));
-////    record->setValue("p_startdate", person.p_startdate.toString("yyyy-MM-dd"));
-////    record->setValue("p_snils", person.p_snils);
-////    record->setValue("p_spec_date", person.p_spec_date.toString("yyyy-MM-dd"));
-////    record->setValue("p_spec_class", person.p_spec_class);
-
-////    MainWindow::repo.UpdatePerson(person);
-
-//}
-
-
-
-
-
+//-----------------------------------------------------------------------------------
+// событие закрытия диалогового окна
+//-----------------------------------------------------------------------------------
 void DlgPerson::on_DlgPerson_finished(int result)
 {
     if(result == 1)
@@ -128,7 +63,69 @@ void DlgPerson::on_DlgPerson_finished(int result)
     else if(idPerson == 0)
     {
         model->removeRow(curRow);
-        //model->submitAll();
     }
+}
+
+
+//-----------------------------------------------------------------------------------
+// проведение медосмотра
+//-----------------------------------------------------------------------------------
+void DlgPerson::on_pbAddMed_clicked()
+{
+    int period = MainWindow::repo.getParam("period_med").toInt();
+
+    if(period == 0) period = 2;
+
+    SelectDateDialog selecDlg;
+    if(med.nextInscect.isValid())
+        selecDlg.setDate(med.nextInscect);
+    else
+        selecDlg.setDate(QDate::currentDate());
+
+    if(selecDlg.exec() == QDialog::Accepted)
+    {
+        QDate newDate = selecDlg.getDate();
+        if(MainWindow::repo.addMed(idPerson, period, newDate))
+        {
+            med.dateInspect = newDate;
+            med.nextInscect = med.dateInspect.addYears(period);
+
+            ui->leNextMed->setText(med.nextInscect.toString("dd.MM.yyyy"));
+            ui->leDateMed->setText(med.dateInspect.toString("dd.MM.yyyy"));
+            ui->lePeriodMed->setText(QString::number(period));
+        }
+    }
+}
+
+
+//-----------------------------------------------------------------------------------
+// проведение психосмотра
+//-----------------------------------------------------------------------------------
+void DlgPerson::on_pbAddPsyh_clicked()
+{
+    int period = MainWindow::repo.getParam("period_psyh").toInt();
+
+    if(period == 0) period = 5;
+
+    SelectDateDialog selecDlg;
+    if(psyh.nextInscect.isValid())
+        selecDlg.setDate(psyh.nextInscect);
+    else
+        selecDlg.setDate(QDate::currentDate());
+
+    if(selecDlg.exec() == QDialog::Accepted)
+    {
+        QDate newDate = selecDlg.getDate();
+        if(MainWindow::repo.addPsyh(idPerson, period, newDate))
+        {
+            psyh.dateInspect = newDate;
+            psyh.nextInscect = psyh.dateInspect.addYears(period);
+
+            ui->leNextDatePsyh->setText(psyh.nextInscect.toString("dd.MM.yyyy"));
+            ui->leDatePsyh->setText(psyh.dateInspect.toString("dd.MM.yyyy"));
+            ui->lePeriodPsyh->setText(QString::number(period));
+        }
+    }
+
 }
 

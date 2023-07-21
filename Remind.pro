@@ -14,7 +14,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     persondelegate.cpp \
-#    remindmodel.cpp
+ \#    remindmodel.cpp
+    selectdatedialog.cpp
 
 HEADERS += \
     Model/Harmfact.h \
@@ -25,11 +26,13 @@ HEADERS += \
     dlgperson.h \
     mainwindow.h \
     persondelegate.h \
-#    remindmodel.h
+ \#    remindmodel.h
+    selectdatedialog.h
 
 FORMS += \
     dlgperson.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    selectdatedialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
