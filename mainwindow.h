@@ -9,7 +9,7 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlTableModel>
-#include <RemindModel.h>
+//#include <RemindModel.h>
 
 
 
@@ -33,6 +33,7 @@ private slots:
     void on_tvPerson_doubleClicked(const QModelIndex &index);
     void on_btnAdd_clicked();
     void on_btnDelete_clicked();
+//    void closeDlg(int result);
 
 private:
     Ui::MainWindow *ui;

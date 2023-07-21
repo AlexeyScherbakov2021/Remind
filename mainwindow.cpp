@@ -78,16 +78,36 @@ void MainWindow::on_tvPerson_doubleClicked(const QModelIndex &index)
 
 void MainWindow::on_btnAdd_clicked()
 {
-    QModelIndex index = ui->tvPerson->currentIndex();
+//    QModelIndex index = ui->tvPerson->currentIndex();
     int maxRow = model->rowCount();
     model->insertRow( maxRow);
-    model->setData(model->index(maxRow,1), "Новая Фамилия");
+    model->setData(model->index(maxRow, 1), "Новая Фамилия");
+    model->setData(model->index(maxRow, 2), "Новое Имя");
+
+//    if( !model->submitAll())
+//        qDebug() << model->lastError().text();
 
     DlgPerson* dlg = new DlgPerson(model, maxRow, this);
     dlg->setModal(true);
     dlg->show();
 
+    //    connect(dlg, SIGNAL(finished(int)), this, SLOT(closeDlg(int)));
+
 }
+
+
+////-----------------------------------------------------------------------------------------------
+//// событие закрытия диалогового окна
+////-----------------------------------------------------------------------------------------------
+//void MainWindow::closeDlg(int result)
+//{
+//    if(result == 0)
+//    {
+//        int maxRow = model->rowCount() - 1;
+
+//        //model->removeRow( maxRow);
+//    }
+//}
 
 
 

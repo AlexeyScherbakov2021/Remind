@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QtSql>
+#include <Model/Medical.h>
 
 
 enum KindSql {SelectPerson, SelectMed};
@@ -14,15 +15,15 @@ class Repository// : public IRepository
 {
 public:
     Repository();
-    void GetListPerson(QList<QSqlRecord> &rec);
-    Person* GetPerson(int Id);
-    int AddPerson(Person &pers);
-    int GetLastMed(int idPerson);
+//    void GetListPerson(QList<QSqlRecord> &rec);
+//    Person* GetPerson(int Id);
+//    int AddPerson(Person &pers);
+    int GetLastMed(int idPerson, Medical* med);
     int GetListMed(int idPerson);
-    bool UpdatePerson(Person &pers);
-    QSqlRecord getRecordPerson();
+//    bool UpdatePerson(Person &pers);
+//    QSqlRecord getRecordPerson();
 
-    int getListRecord(KindSql kind, QList<QSqlRecord> &rec);
+//    int getListRecord(KindSql kind, QList<QSqlRecord> &rec);
 
     QSqlDatabase getDb() {return db;} ;
 

@@ -14,6 +14,7 @@ public:
     int idPerson;
     int Period;
     QDate dateInspect;
+    QDate nextInscect;
 };
 
 #endif // MEDICAL_H

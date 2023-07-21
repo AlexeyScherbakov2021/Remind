@@ -65,11 +65,11 @@ public:
     QPushButton *pushButton_5;
     QPushButton *pushButton_3;
     QLabel *label_12;
-    QLineEdit *lineEdit_2;
+    QLineEdit *leDateMed;
     QLabel *label_13;
-    QLineEdit *lineEdit_3;
+    QLineEdit *lePeriodMed;
     QLabel *label_14;
-    QLineEdit *lineEdit_4;
+    QLineEdit *leNextMed;
     QGroupBox *formGroupBox_2;
     QFormLayout *formLayout_3;
     QLabel *label_16;
@@ -252,33 +252,33 @@ public:
 
         formLayout_2->setWidget(1, QFormLayout::LabelRole, label_12);
 
-        lineEdit_2 = new QLineEdit(formGroupBox);
-        lineEdit_2->setObjectName("lineEdit_2");
-        lineEdit_2->setReadOnly(true);
+        leDateMed = new QLineEdit(formGroupBox);
+        leDateMed->setObjectName("leDateMed");
+        leDateMed->setReadOnly(true);
 
-        formLayout_2->setWidget(1, QFormLayout::FieldRole, lineEdit_2);
+        formLayout_2->setWidget(1, QFormLayout::FieldRole, leDateMed);
 
         label_13 = new QLabel(formGroupBox);
         label_13->setObjectName("label_13");
 
         formLayout_2->setWidget(2, QFormLayout::LabelRole, label_13);
 
-        lineEdit_3 = new QLineEdit(formGroupBox);
-        lineEdit_3->setObjectName("lineEdit_3");
-        lineEdit_3->setReadOnly(true);
+        lePeriodMed = new QLineEdit(formGroupBox);
+        lePeriodMed->setObjectName("lePeriodMed");
+        lePeriodMed->setReadOnly(true);
 
-        formLayout_2->setWidget(2, QFormLayout::FieldRole, lineEdit_3);
+        formLayout_2->setWidget(2, QFormLayout::FieldRole, lePeriodMed);
 
         label_14 = new QLabel(formGroupBox);
         label_14->setObjectName("label_14");
 
         formLayout_2->setWidget(3, QFormLayout::LabelRole, label_14);
 
-        lineEdit_4 = new QLineEdit(formGroupBox);
-        lineEdit_4->setObjectName("lineEdit_4");
-        lineEdit_4->setReadOnly(true);
+        leNextMed = new QLineEdit(formGroupBox);
+        leNextMed->setObjectName("leNextMed");
+        leNextMed->setReadOnly(true);
 
-        formLayout_2->setWidget(3, QFormLayout::FieldRole, lineEdit_4);
+        formLayout_2->setWidget(3, QFormLayout::FieldRole, leNextMed);
 
         formGroupBox_2 = new QGroupBox(tabMed);
         formGroupBox_2->setObjectName("formGroupBox_2");

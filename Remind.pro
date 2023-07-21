@@ -14,7 +14,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     persondelegate.cpp \
-    remindmodel.cpp
+#    remindmodel.cpp
 
 HEADERS += \
     Model/Harmfact.h \
@@ -25,7 +25,7 @@ HEADERS += \
     dlgperson.h \
     mainwindow.h \
     persondelegate.h \
-    remindmodel.h
+#    remindmodel.h
 
 FORMS += \
     dlgperson.ui \
