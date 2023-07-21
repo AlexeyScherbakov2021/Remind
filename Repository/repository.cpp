@@ -315,6 +315,72 @@ int Repository::GetLastPsyh(int idPerson, Medical *med)
 
 }
 
+//-----------------------------------------------------------------------------------
+// получение списка вредностей
+//-----------------------------------------------------------------------------------
+QStringList Repository::getListHarms()
+{
+    QStringList listHarm;
+    if(!db.open())
+    {
+        qDebug() << "Cannot open database: " << db.lastError();
+        return QStringList();
+    }
+
+    QSqlQuery sql(db);
+    sql.prepare("select hf_name from harmfact");
+    sql.exec();
+
+    while(sql.next())
+    {
+        QString s = sql.value("hf_name").toString();
+        listHarm.push_back(s);
+
+    }
+    db.close();
+
+    return listHarm;
+
+}
+
+
+
+//-----------------------------------------------------------------------------------
+// получение списка последних обучений для сотрудника
+//-----------------------------------------------------------------------------------
+bool Repository::getListTrain(int idPerson, TrainKind kind, QList<TrainPersonModel> &list)
+{
+    if(!db.open())
+    {
+        qDebug() << "Cannot open database: " << db.lastError();
+        return false;
+    }
+
+    QSqlQuery sql(db);
+    sql.prepare("select  t.t_name,t.t_period,tp.tp_id_train,tp.tp_date from trainlist t "
+                "join (select tp_id_train,tp_id_person ,max(tp_date) as tp_date "
+                "from trainperson "
+                "group by tp_id_train) tp on tp.tp_id_train=t.id "
+                "where tp.tp_id_person=:tp_id_person");
+    sql.bindValue(":tp_id_person", idPerson);
+    sql.exec();
+
+    while(sql.next())
+    {
+        TrainPersonModel mod; // = new TrainPersonModel();
+        mod.name = sql.value("t_name").toString();
+        mod.period = sql.value("t_period").toInt();
+        mod.idTrainPerson = sql.value("tp_id_train").toInt();
+        mod.date = sql.value("tp_date").toDate();
+        list.push_back(mod);
+
+    }
+    db.close();
+
+    return true;
+
+}
+
 
 //-----------------------------------------------------------------------------------
 // получение параметра по имени

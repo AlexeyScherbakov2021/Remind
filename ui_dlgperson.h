@@ -18,11 +18,13 @@
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListWidget>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -57,7 +59,7 @@ public:
     QVBoxLayout *verticalLayout_3;
     QTabWidget *tabWidget;
     QWidget *tabMed;
-    QListWidget *listHarm;
+    QListView *listHarm;
     QLabel *label_10;
     QGroupBox *formGroupBox;
     QFormLayout *formLayout_2;
@@ -84,6 +86,11 @@ public:
     QPushButton *pbAddHarm;
     QPushButton *pbDelHarm;
     QWidget *tabOT;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_4;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton;
+    QTableWidget *tvOT;
     QWidget *tabPB;
     QWidget *tabPrB;
     QDialogButtonBox *buttonBox;
@@ -221,7 +228,7 @@ public:
         tabWidget->setSizePolicy(sizePolicy);
         tabMed = new QWidget();
         tabMed->setObjectName("tabMed");
-        listHarm = new QListWidget(tabMed);
+        listHarm = new QListView(tabMed);
         listHarm->setObjectName("listHarm");
         listHarm->setGeometry(QRect(20, 200, 471, 171));
         label_10 = new QLabel(tabMed);
@@ -344,6 +351,28 @@ public:
         tabWidget->addTab(tabMed, QString());
         tabOT = new QWidget();
         tabOT->setObjectName("tabOT");
+        verticalLayout_2 = new QVBoxLayout(tabOT);
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
+        pushButton_2 = new QPushButton(tabOT);
+        pushButton_2->setObjectName("pushButton_2");
+
+        horizontalLayout_4->addWidget(pushButton_2);
+
+        pushButton = new QPushButton(tabOT);
+        pushButton->setObjectName("pushButton");
+
+        horizontalLayout_4->addWidget(pushButton);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_4);
+
+        tvOT = new QTableWidget(tabOT);
+        tvOT->setObjectName("tvOT");
+
+        verticalLayout_2->addWidget(tvOT);
+
         tabWidget->addTab(tabOT, QString());
         tabPB = new QWidget();
         tabPB->setObjectName("tabPB");
@@ -375,7 +404,7 @@ public:
         QObject::connect(buttonBox, &QDialogButtonBox::rejected, DlgPerson, qOverload<>(&QDialog::reject));
         QObject::connect(buttonBox, &QDialogButtonBox::accepted, DlgPerson, qOverload<>(&QDialog::accept));
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(DlgPerson);
@@ -412,6 +441,8 @@ public:
         pbAddHarm->setText(QCoreApplication::translate("DlgPerson", "+", nullptr));
         pbDelHarm->setText(QCoreApplication::translate("DlgPerson", "-", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabMed), QCoreApplication::translate("DlgPerson", "\320\234\320\265\320\264\320\276\321\201\320\274\320\276\321\202\321\200", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("DlgPerson", "+", nullptr));
+        pushButton->setText(QCoreApplication::translate("DlgPerson", "-", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabOT), QCoreApplication::translate("DlgPerson", "\320\236\320\261\321\203\321\207\320\265\320\275\320\270\320\265 \320\277\320\276 \320\236\320\242", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabPB), QCoreApplication::translate("DlgPerson", "\320\236\320\261\321\203\321\207\320\265\320\275\320\270\320\265 \320\277\320\276 \320\237\320\221", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabPrB), QCoreApplication::translate("DlgPerson", "\320\237\321\200\320\276\320\274\321\213\321\210\320\273\320\265\320\275\320\275\320\260\321\217 \320\261\320\265\320\267\320\276\320\277\320\260\321\201\320\275\320\276\321\201\321\202\321\214", nullptr));

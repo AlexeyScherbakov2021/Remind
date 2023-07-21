@@ -6,6 +6,7 @@
 #include <QSqlError>
 #include <QtSql>
 #include <Model/Medical.h>
+#include <Model/TrainPersonModel.h>
 
 
 enum KindSql {SelectPerson, SelectMed};
@@ -24,6 +25,9 @@ public:
 
     bool addPsyh(int idPerson, int period, QDate &date);
     int GetLastPsyh(int idPerson, Medical* med);
+
+    QStringList getListHarms();
+    bool getListTrain(int idPerson, TrainKind kind, QList<TrainPersonModel> &list);
     //    QSqlRecord getRecordPerson();
 
     QVariant getParam(const QString &paramName);

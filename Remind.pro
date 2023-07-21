@@ -15,19 +15,22 @@ SOURCES += \
     mainwindow.cpp \
     persondelegate.cpp \
  \#    remindmodel.cpp
-    selectdatedialog.cpp
+    selectdatedialog.cpp \
+    trainpersonwork.cpp
 
 HEADERS += \
     Model/Harmfact.h \
     Model/Medical.h \
     Model/Person.h \
+    Model/TrainPersonModel.h \
     Repository/IRepository.h \
     Repository/repository.h \
     dlgperson.h \
     mainwindow.h \
     persondelegate.h \
  \#    remindmodel.h
-    selectdatedialog.h
+    selectdatedialog.h \
+    trainpersonwork.h
 
 FORMS += \
     dlgperson.ui \

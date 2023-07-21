@@ -183,13 +183,13 @@
            </sizepolicy>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tabMed">
            <attribute name="title">
             <string>Медосмотр</string>
            </attribute>
-           <widget class="QListWidget" name="listHarm">
+           <widget class="QListView" name="listHarm">
             <property name="geometry">
              <rect>
               <x>20</x>
@@ -399,6 +399,29 @@
            <attribute name="title">
             <string>Обучение по ОТ</string>
            </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QPushButton" name="pushButton_2">
+                <property name="text">
+                 <string>+</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton">
+                <property name="text">
+                 <string>-</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="tvOT"/>
+            </item>
+           </layout>
           </widget>
           <widget class="QWidget" name="tabPB">
            <attribute name="title">

@@ -10,6 +10,8 @@ DlgPerson::DlgPerson(QSqlTableModel *mod, int currenRow, QWidget *parent) : QDia
     curRow = currenRow;
     ui->setupUi(this);
 
+    ui->tabWidget->setStyleSheet( "background-color: #eeeeee;" );
+
     mapper = new QDataWidgetMapper();
     mapper->setSubmitPolicy(QDataWidgetMapper::SubmitPolicy::ManualSubmit);
     mapper->setModel(model);
@@ -40,7 +42,28 @@ DlgPerson::DlgPerson(QSqlTableModel *mod, int currenRow, QWidget *parent) : QDia
 
     }
 
+    train = new TrainPersonWork(ui->tvOT, idPerson, TrainKind::LaborProtect);
+
+//    MainWindow::repo.getDb().open();
+
+//    modelOT.setQuery("select t.t_name,t.period,tp.tp_date from trainlist t "
+//                     "join (select tp_id_train,max(tp_date) as tp_date from trainperson group by tp_id_train ) tp on tp.tp_id_train=t.id");
+
+//    if(modelOT.lastError().isValid())
+//    {
+//        qDebug() << modelOT.lastError();
+//    }
+//    ui->tvOT->setModel(&modelOT);
+
+//    MainWindow::repo.getDb().close();
+
+//    modelHarm.setTable("harmfact");
+//    modelHarm.select();
+//    ui->listHarm->setModel(modelHarm);
+
 }
+
+
 
 DlgPerson::~DlgPerson()
 {

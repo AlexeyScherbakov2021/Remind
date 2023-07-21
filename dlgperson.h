@@ -6,6 +6,7 @@
 #include <QDataWidgetMapper>
 #include <QDialog>
 #include <QSqlTableModel>
+#include "trainpersonwork.h"
 
 #include <Model/Medical.h>
 //#include <RemindModel.h>
@@ -38,6 +39,9 @@ private:
     Medical psyh;
     int idPerson;
     int curRow;
+
+    TrainPersonWork *train;
+//    QSqlQueryModel modelOT;
 };
 
 
