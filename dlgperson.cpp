@@ -10,7 +10,7 @@ DlgPerson::DlgPerson(QSqlTableModel *mod, int currenRow, QWidget *parent) : QDia
     curRow = currenRow;
     ui->setupUi(this);
 
-    ui->tabWidget->setStyleSheet( "background-color: #eeeeee;" );
+    ui->tabWidget->setStyleSheet( "background-color: #f0f0f0;" );
 
     mapper = new QDataWidgetMapper();
     mapper->setSubmitPolicy(QDataWidgetMapper::SubmitPolicy::ManualSubmit);

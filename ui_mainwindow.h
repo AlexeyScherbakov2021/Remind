@@ -51,8 +51,14 @@ public:
         tvPerson = new QTableView(centralwidget);
         tvPerson->setObjectName("tvPerson");
         tvPerson->setAutoFillBackground(false);
+        tvPerson->setStyleSheet(QString::fromUtf8("QTableView{\n"
+"	background-color: rgb(239, 239, 239);\n"
+"	selection-background-color: rgb(80, 92, 255);\n"
+"	alternate-background-color: rgb(228, 228, 228);\n"
+"}"));
         tvPerson->setLineWidth(2);
         tvPerson->setMidLineWidth(2);
+        tvPerson->setAlternatingRowColors(true);
         tvPerson->setSelectionMode(QAbstractItemView::SingleSelection);
         tvPerson->setSelectionBehavior(QAbstractItemView::SelectRows);
 

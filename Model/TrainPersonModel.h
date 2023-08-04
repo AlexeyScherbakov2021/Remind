@@ -15,6 +15,7 @@ public:
     TrainKind kind;
     int idTrainPerson;
     QDate date;
+
 };
 
 

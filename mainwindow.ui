@@ -20,11 +20,21 @@
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QTableView{
+	background-color: rgb(239, 239, 239);
+	selection-background-color: rgb(80, 92, 255);
+	alternate-background-color: rgb(228, 228, 228);
+}</string>
+      </property>
       <property name="lineWidth">
        <number>2</number>
       </property>
       <property name="midLineWidth">
        <number>2</number>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
       </property>
       <property name="selectionMode">
        <enum>QAbstractItemView::SingleSelection</enum>

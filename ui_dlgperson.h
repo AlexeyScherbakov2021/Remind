@@ -200,6 +200,7 @@ public:
 
         label_9 = new QLabel(groupBox);
         label_9->setObjectName("label_9");
+        label_9->setWordWrap(false);
 
         formLayout->setWidget(8, QFormLayout::LabelRole, label_9);
 
@@ -226,6 +227,7 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
         tabWidget->setSizePolicy(sizePolicy);
+        tabWidget->setStyleSheet(QString::fromUtf8(""));
         tabMed = new QWidget();
         tabMed->setObjectName("tabMed");
         listHarm = new QListView(tabMed);
@@ -369,7 +371,29 @@ public:
         verticalLayout_2->addLayout(horizontalLayout_4);
 
         tvOT = new QTableWidget(tabOT);
+        if (tvOT->columnCount() < 5)
+            tvOT->setColumnCount(5);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        tvOT->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        tvOT->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        tvOT->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        tvOT->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        tvOT->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         tvOT->setObjectName("tvOT");
+        tvOT->setStyleSheet(QString::fromUtf8("QTableWidget{\n"
+"	background-color: #f0f0f0;\n"
+"	alternate-background-color: #e0e0e0;\n"
+"}\n"
+""));
+        tvOT->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tvOT->setAlternatingRowColors(true);
+        tvOT->setSelectionMode(QAbstractItemView::NoSelection);
+        tvOT->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tvOT->setSortingEnabled(true);
 
         verticalLayout_2->addWidget(tvOT);
 
@@ -386,7 +410,6 @@ public:
 
         horizontalLayout->addWidget(verticalGroupBox);
 
-        horizontalLayout->setStretch(0, 3);
         horizontalLayout->setStretch(1, 5);
 
         verticalLayout->addLayout(horizontalLayout);
@@ -404,7 +427,7 @@ public:
         QObject::connect(buttonBox, &QDialogButtonBox::rejected, DlgPerson, qOverload<>(&QDialog::reject));
         QObject::connect(buttonBox, &QDialogButtonBox::accepted, DlgPerson, qOverload<>(&QDialog::accept));
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(DlgPerson);
@@ -443,6 +466,16 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tabMed), QCoreApplication::translate("DlgPerson", "\320\234\320\265\320\264\320\276\321\201\320\274\320\276\321\202\321\200", nullptr));
         pushButton_2->setText(QCoreApplication::translate("DlgPerson", "+", nullptr));
         pushButton->setText(QCoreApplication::translate("DlgPerson", "-", nullptr));
+        QTableWidgetItem *___qtablewidgetitem = tvOT->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QCoreApplication::translate("DlgPerson", "\320\235\320\260\320\270\320\274\320\265\320\275\320\276\320\262\320\260\320\275\320\270\320\265", nullptr));
+        QTableWidgetItem *___qtablewidgetitem1 = tvOT->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QCoreApplication::translate("DlgPerson", "\320\224\320\260\321\202\320\260", nullptr));
+        QTableWidgetItem *___qtablewidgetitem2 = tvOT->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QCoreApplication::translate("DlgPerson", "\320\237\320\265\321\200\320\270\320\276\320\264", nullptr));
+        QTableWidgetItem *___qtablewidgetitem3 = tvOT->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QCoreApplication::translate("DlgPerson", "\320\241\320\273\320\265\320\264. \320\264\320\260\321\202\320\260", nullptr));
+        QTableWidgetItem *___qtablewidgetitem4 = tvOT->horizontalHeaderItem(4);
+        ___qtablewidgetitem4->setText(QCoreApplication::translate("DlgPerson", "\320\240\320\265\320\264\320\260\320\272\321\202\320\270\321\200\320\276\320\262\320\260\320\275\320\270\320\265", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabOT), QCoreApplication::translate("DlgPerson", "\320\236\320\261\321\203\321\207\320\265\320\275\320\270\320\265 \320\277\320\276 \320\236\320\242", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabPB), QCoreApplication::translate("DlgPerson", "\320\236\320\261\321\203\321\207\320\265\320\275\320\270\320\265 \320\277\320\276 \320\237\320\221", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabPrB), QCoreApplication::translate("DlgPerson", "\320\237\321\200\320\276\320\274\321\213\321\210\320\273\320\265\320\275\320\275\320\260\321\217 \320\261\320\265\320\267\320\276\320\277\320\260\321\201\320\275\320\276\321\201\321\202\321\214", nullptr));
